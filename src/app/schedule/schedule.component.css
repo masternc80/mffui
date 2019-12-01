@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.schedule_column {
+  min-width: 300px;
+  max-width: 450px;
+}
+
+.grid-item {
+  padding-top: 16px;
+}
+
+.margin5px {
+  margin: 5px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.near-full-width {
+  width: 99%;
+}
+
+.overhead {
+  margin-top: 5px
+}
+
+.small-icon {
+  font-size: 16px;
+  height: auto;
+  margin-left: 4px;
+  cursor: default;
+  width: auto;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+::ng-deep .mat-tooltip  {
+  white-space: pre-line    !important;
+}
+
+::ng-deep .mat-snack-bar-container  {
+  white-space: pre-line    !important;
+}

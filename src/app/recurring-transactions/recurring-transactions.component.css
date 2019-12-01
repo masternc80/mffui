@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.accounts_column {
+  min-width: 300px;
+  max-width: 450px;
+}
+.grid-item {
+  padding-top: 16px;
+}
+
+.small-icon {
+  font-size: 16px;
+  height: auto;
+  margin-left: 4px;
+  cursor: default;
+  width: auto;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.full-width {
+  width: 100%;
+}
+::ng-deep .mat-tooltip  {
+  white-space: pre-line    !important;
+}
+
+.near-full-width {
+  width: 99%;
+}

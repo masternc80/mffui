@@ -1,0 +1,32 @@
+<mat-toolbar>
+  <span class="align-flex"></span>
+<nav mat-tab-nav-bar class="center">
+  <a mat-tab-link
+     [routerLink]="'/forecast'"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    Forecast
+  </a>
+  <a mat-tab-link
+     [routerLink]="'/schedules'"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    Schedules
+  </a>
+  <a mat-tab-link
+     [routerLink]="'/accounts'"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    Accounts
+  </a>
+  <a mat-tab-link
+     [routerLink]="'/recurring'"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    Recurring transactions
+  </a>
+</nav>
+  <span class="align-flex"></span>
+</mat-toolbar>
+<router-outlet></router-outlet>
+

@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="grid-item accounts_column">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Registered recurring transactions
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item *ngFor="let transaction of transactions">{{ transaction.name }}
+            <mat-icon color="primary" [matTooltip]="transaction['hint'] || ''" class="small-icon">info</mat-icon>
+            <mat-icon color="primary" matTooltip="Edit account" class="small-icon pointer" (click)="editAccount(transaction.id)">edit</mat-icon>
+            <mat-icon color="primary" matTooltip="Delete account" class="small-icon pointer" (click)="deleteAccount(transaction.id)">delete</mat-icon>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-header>
+        <mat-card-subtitle>Total count: {{ transactions.length }}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+  <div class="grid-item accounts_column" [hidden]="schedules.length==0">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Add new recurring transaction</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form novalidate [formGroup]="transactionForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+          <p>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="name" placeholder="Recurring Transaction Name" type="text" required>
+              <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            Account schedule:<br/>
+            <mat-select class="full-width"  formControlName="scheduleId">
+              <mat-option *ngFor="let schedule of schedules" [value]="schedule.id">
+                {{schedule.name}}
+              </mat-option>
+            </mat-select>
+          </p>
+          <p>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="amount" placeholder="Amount" type="text" required>
+              <mat-error *ngIf="formErrors.amount">{{formErrors.amount}}</mat-error>
+            </mat-form-field>
+          </p>
+          <button type="submit" mat-raised-button color="primary" class="full-width overhead" [disabled]="!this.transactionForm.valid">ADD</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="grid-item accounts_column" [hidden]="schedules.length>0">
+    <mat-card>
+      <mat-card-content>
+        You cannot add new recurring transactions.<br/>
+        No schedules defined.
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<h1 mat-dialog-title>Edit account</h1>
+<div mat-dialog-content>
+  <form novalidate [formGroup]="accountForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="name" placeholder="Account Name" type="text" required>
+        <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+      </mat-form-field>
+    </p>
+      <span>Account type:</span><br/>
+      <mat-select class="full-width"  placeholder="Account type" formControlName="accountType">
+        <mat-option value="CREDIT_CARD">
+          Credit card
+        </mat-option>
+        <mat-option value="CHECKING">
+          Checking
+        </mat-option>
+        <mat-option value="SAVINGS">
+          Savings
+        </mat-option>
+        <mat-option value="CAR_LOAN">
+          Car loan
+        </mat-option>
+        <mat-option value="PERSONAL_LOAN">
+          Personal loan
+        </mat-option>
+        <mat-option value="MORTGAGE">
+          Mortgage
+        </mat-option>
+        <mat-option value="RETIREMENT">
+          Retirement
+        </mat-option>
+      </mat-select>
+      <span>Account schedule:</span><br/>
+      <mat-select class="full-width"  formControlName="scheduleId">
+        <mat-option *ngFor="let schedule of schedules" [value]="schedule.id">
+          {{schedule.name}}
+        </mat-option>
+      </mat-select>
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="currentBalance" placeholder="Current balance" type="text" required>
+        <mat-error *ngIf="formErrors.currentBalance">{{formErrors.currentBalance}}</mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="statementBalance" placeholder="Statement balance" type="text" required>
+        <mat-error *ngIf="formErrors.statementBalance">{{formErrors.statementBalance}}</mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="monthlySpend" placeholder="Monthly spend" type="text" required>
+        <mat-error *ngIf="formErrors.monthlySpend">{{formErrors.monthlySpend}}</mat-error>
+      </mat-form-field>
+    </p>
+    <mat-grid-list cols="2" rowHeight="38" gutterSize="5" class="overhead">
+      <mat-grid-tile>
+        <button type="submit" mat-raised-button color="primary" class="full-width" [disabled]="!this.accountForm.valid">SAVE</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button mat-dialog-close class="near-full-width" (click)="this.dialogRef.close()">CANCEL</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>

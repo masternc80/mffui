@@ -1,0 +1,62 @@
+<h1 mat-dialog-title>Edit schedule</h1>
+<div mat-dialog-content>
+  <form novalidate [formGroup]="scheduleForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="name" placeholder="Schedule Name" type="text" required>
+        <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+      </mat-form-field>
+
+      <mat-select class="full-width"  placeholder="Schedule type" formControlName="isPeriodic">
+        <mat-option value="true">
+          Periodic
+        </mat-option>
+        <mat-option value="false">
+          Fixed
+        </mat-option>
+      </mat-select>
+    </p>
+    <div [hidden]="scheduleForm.get('isPeriodic').value == null || scheduleForm.get('isPeriodic').value == 'false'">
+      <mat-grid-list cols="2" rowHeight="60" class="full-width">
+        <mat-grid-tile>
+          <mat-form-field class="full-width">
+            <input matInput formControlName="periodLength" placeholder="Period Length" inputmode="numeric" size="4">
+            <mat-error *ngIf="formErrors.periodLength">{{formErrors.periodLength}}</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-select placeholder="Schedule type" formControlName="periodUnit" class="full-width">
+            <mat-option value="DAY">
+              Day(s)
+            </mat-option>
+            <mat-option value="WEEK">
+              Week(s)
+            </mat-option>
+            <mat-option value="MONTH">
+              Months(s)
+            </mat-option>
+          </mat-select>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="startDate" placeholder="Start date" class="full-width" type="date">
+        <mat-error *ngIf="formErrors.startDate">{{formErrors.startDate}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div [hidden]="scheduleForm.get('isPeriodic').value == null || scheduleForm.get('isPeriodic').value == 'true'">
+      <mat-form-field class="full-width">
+        <input matInput formControlName="baseDayOfMonth" placeholder="Day of month" inputmode="numeric" size="4">
+        <mat-error *ngIf="formErrors.baseDayOfMonth">{{formErrors.baseDayOfMonth}}</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-slide-toggle formControlName="isPriorWeekend">Falls back before weekend/holiday</mat-slide-toggle><br/>
+    <mat-grid-list cols="2" rowHeight="38" gutterSize="5" class="overhead">
+      <mat-grid-tile>
+    <button type="submit" mat-raised-button color="primary" class="full-width" [disabled]="!this.scheduleForm.valid">SAVE</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button mat-dialog-close class="near-full-width" (click)="this.dialogRef.close()">CANCEL</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>

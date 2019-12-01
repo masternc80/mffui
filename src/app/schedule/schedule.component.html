@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="grid-item schedule_column">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Registered schedules
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item *ngFor="let schedule of schedules">{{ schedule.name }}
+              <mat-icon color="primary" [matTooltip]="schedule['hint'] || ''" class="small-icon">info</mat-icon>
+              <mat-icon color="primary" matTooltip="Edit schedule" class="small-icon pointer" (click)="openEditForm(schedule.id)">edit</mat-icon>
+              <mat-icon color="primary" matTooltip="Delete schedule" class="small-icon pointer" (click)="deleteSchedule(schedule.id)" *ngIf="schedule.canDelete">delete</mat-icon>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+        <mat-card-header>
+          <mat-card-subtitle>Total count: {{ schedules.length }}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+  </div>
+  <div class="grid-item schedule_column">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Add new schedule</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form novalidate [formGroup]="scheduleForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+            <p>
+              <mat-form-field class="full-width">
+                <input matInput formControlName="name" placeholder="Schedule Name" type="text" required>
+                <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+              </mat-form-field>
+
+              <mat-select class="full-width"  placeholder="Schedule type" formControlName="isPeriodic">
+                <mat-option value="true">
+                  Periodic
+                </mat-option>
+                <mat-option value="false">
+                  Fixed
+                </mat-option>
+              </mat-select>
+            </p>
+              <div [hidden]="scheduleForm.get('isPeriodic').value == null || scheduleForm.get('isPeriodic').value == 'false'">
+                <mat-grid-list cols="2" rowHeight="60" class="full-width">
+                  <mat-grid-tile>
+                    <mat-form-field class="full-width">
+                      <input matInput formControlName="periodLength" placeholder="Period Length" inputmode="numeric" size="4">
+                      <mat-error *ngIf="formErrors.periodLength">{{formErrors.periodLength}}</mat-error>
+                    </mat-form-field>
+                  </mat-grid-tile>
+                  <mat-grid-tile>
+                    <mat-select placeholder="Schedule type" formControlName="periodUnit" class="full-width">
+                      <mat-option value="DAY">
+                        Day(s)
+                      </mat-option>
+                      <mat-option value="WEEK">
+                        Week(s)
+                      </mat-option>
+                      <mat-option value="MONTH">
+                        Months(s)
+                      </mat-option>
+                    </mat-select>
+                  </mat-grid-tile>
+                </mat-grid-list>
+                <mat-form-field class="full-width">
+                  <input matInput formControlName="startDate" placeholder="Start date" class="full-width" type="date">
+                  <mat-error *ngIf="formErrors.startDate">{{formErrors.startDate}}</mat-error>
+                </mat-form-field>
+              </div>
+            <div [hidden]="scheduleForm.get('isPeriodic').value == null || scheduleForm.get('isPeriodic').value == 'true'">
+                <mat-form-field class="full-width">
+                  <input matInput formControlName="baseDayOfMonth" placeholder="Day of month" inputmode="numeric" size="4">
+                  <mat-error *ngIf="formErrors.baseDayOfMonth">{{formErrors.baseDayOfMonth}}</mat-error>
+                </mat-form-field>
+            </div>
+            <mat-slide-toggle formControlName="isPriorWeekend">Falls back before weekend/holiday</mat-slide-toggle><br/>
+            <button type="submit" mat-raised-button color="primary" class="full-width overhead" [disabled]="!this.scheduleForm.valid">ADD</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+  </div>
+</div>
+
+
