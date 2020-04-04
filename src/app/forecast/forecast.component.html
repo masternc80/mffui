@@ -1,8 +1,50 @@
-<mat-grid-list cols="2">
-  <mat-grid-tile>
-    AAA
-  </mat-grid-tile>
-  <mat-grid-tile>
-    BBB
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="container" id="mainDiv">
+  <form novalidate [formGroup]="editForm" #fform="ngForm">
+  <table #forecast mat-table [dataSource]="transactions" class="mat-elevation-z8">
+  <ng-container [matColumnDef]="column" *ngFor="let column of fields">
+    <th mat-header-cell *matHeaderCellDef> {{header[column]}} </th>
+    <td mat-cell *matCellDef="let element" [class]="'mat-cell cell-' + column + (column === 'amount' ? element['amount-class'] : '')" (mouseenter)="mouseOver(element, column)" (mouseleave)="mouseOut(element, column)" >
+      <span class="innerSpan">
+        <span [id]="'leftspan' + column + element['id']" (click)="spanClick(element, column)"></span>
+        {{element[column]}}
+        <div [id]="'rightspan' + column + element['id']"></div>
+      </span>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="fields"></tr>
+  <tr mat-row *matRowDef="let row; columns: fields;" [id]="'row' + row['id']" [class]="'mat-row ng-star-inserted background' + (row.past ? '_past' : '_current')"></tr>
+</table>
+  <table [hidden]="true">
+    <tr id="newRow">
+  <td class="mat-cell">
+    <mat-form-field class="innerInput size6" appearance="outline">
+      <mat-label>Date</mat-label>
+      <input matInput formControlName="date" placeholder="Date" type="date">
+    </mat-form-field>
+  </td>
+  <td class="mat-cell">
+    <mat-form-field class="innerInput size4" appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput formControlName="amount" inputmode="numeric" type="number" step="0.01" placeholder="Amount">
+      <span matPrefix style="top: -0.25em;position: relative">$&nbsp;</span>
+    </mat-form-field>
+  </td>
+      <td class="mat-cell" style="min-width: 100.5px;">&nbsp;</td>
+  <td class="mat-cell" align="left">
+    <span style="position:relative">
+    <mat-form-field class="innerInput size10" appearance="outline">
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" size="10" placeholder="Description">
+    </mat-form-field>
+    <mat-icon color="primary" matTooltip="Add transaction" class="small-icon pointer">done</mat-icon>
+    <mat-icon color="error" matTooltip="Cancel" class="small-icon pointer" (click)="cancelTransaction()">cancel</mat-icon>
+    </span>
+  </td>
+    </tr>
+  </table>
+  <table [hidden]="true" style="width: 100%;min-width: 50px;" id="actionsTable">
+    <tr><td width="100%"></td><td><mat-icon matTooltip="Edit Transaction" color="primary" class="pointer" id="edittr">edit</mat-icon> </td><td><mat-icon matTooltip="Delete Transaction" color="primary" class="pointer" id="canceltr">delete</mat-icon></td></tr>
+  </table>
+  </form>
+</div>

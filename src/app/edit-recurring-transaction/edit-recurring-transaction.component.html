@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Edit account</h1>
+<div mat-dialog-content>
+  <form novalidate [formGroup]="transactionForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="name" placeholder="Recurring Transaction Name" type="text" required>
+        <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+      </mat-form-field>
+    </p>
+    <mat-label class="mat-label">Transaction schedule:</mat-label>
+    <mat-checkbox *ngFor="let schedule of schedules" [formControlName]="'schedule_' + schedule.id" class="full-width">
+      {{schedule.name}}
+    </mat-checkbox>
+    <p>
+      <mat-form-field class="full-width">
+        <input matInput formControlName="amount" placeholder="Amount" type="text" required>
+        <mat-error *ngIf="formErrors.amount">{{formErrors.amount}}</mat-error>
+      </mat-form-field>
+    </p>
+    <mat-grid-list cols="2" rowHeight="38" gutterSize="5" class="overhead">
+      <mat-grid-tile>
+        <button type="submit" mat-raised-button color="primary" class="full-width" [disabled]="!this.transactionForm.valid">SAVE</button>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <button mat-raised-button mat-dialog-close class="near-full-width" (click)="this.dialogRef.close()">CANCEL</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>

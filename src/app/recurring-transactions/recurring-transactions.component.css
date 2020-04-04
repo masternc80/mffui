@@ -25,6 +25,7 @@
 
 .full-width {
   width: 100%;
+  display: block;
 }
 ::ng-deep .mat-tooltip  {
   white-space: pre-line    !important;
@@ -32,4 +33,8 @@
 
 .near-full-width {
   width: 99%;
+}
+
+.mat-label {
+  line-height: 32px;
 }

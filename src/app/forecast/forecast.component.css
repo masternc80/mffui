@@ -1,0 +1,128 @@
+table{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+  min-width: 560px;
+}
+
+.floatingEntry {
+  position: absolute;
+  top: -17px;
+  left: -0%;
+  color: lightgreen;
+  font-size: 34px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.floatingEdit {
+  position: absolute;
+  top: -9px;
+  width: 100%;
+  font-size: 28px;
+}
+
+.cell-recordDate {
+  font-weight: bold;
+  white-space: nowrap;
+  width: 135px;
+}
+
+.cell-amount-positive {
+  color: green;
+  white-space: nowrap;
+  width: 110px;
+}
+
+.cell-amount-negative {
+  color: red;
+  white-space: nowrap;
+  width: 110px;
+}
+
+.cell-amount-positive .innerSpan::before {
+  content: "$";
+}
+
+.cell-amount-negative .innerSpan::before {
+  content: "$";
+}
+.cell-amount-neutral .innerSpan::before {
+  content: "$";
+}
+
+.cell-balance .innerSpan::before {
+  content: "$";
+}
+
+.cell-description {
+  text-align: left;
+  padding-left: 8px;
+  white-space: nowrap;
+}
+
+.mat-column-recordDate {
+  text-align: right;
+}
+
+.mat-column-amount {
+  text-align: right;
+}
+
+.mat-column-balance {
+  text-align: right;
+}
+
+.mat-column-description {
+  padding-left: 8px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.innerInput {
+  font-size: 10px;
+}
+
+.size4 {
+  width: 80px !important;
+  top: 4px;
+}
+
+.size6 {
+  width: 110px !important;
+  top: 4px;
+}
+::ng-deep .size6 .mat-form-field-infix {
+  padding-top: 10px;
+  padding-bottom: 6px;
+}
+
+.size10 {
+  width: 80% !important;
+  top: 4px;
+  padding-left: 8px;
+}
+
+::ng-deep .small-icon {
+  vertical-align: middle;
+}
+
+::ng-deep div .ng-star-inserted {
+  top: 0em;
+}
+
+.innerSpan {
+  position: relative;
+  display: block;
+}
+
+.background_past {
+  background: lightgray;
+}
+
+.background_current {
+
+}

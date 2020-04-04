@@ -10,7 +10,7 @@ import {RecurringTransaction} from '../dto/RecurringTransaction';
 })
 export class RecurringTransactionService {
 
-  transactionURL: string = baseURL + 'transaction';
+  transactionURL: string = baseURL + 'recurring';
   constructor(private http: HttpClient) { }
 
   public handleError(response: HttpErrorResponse | any) {

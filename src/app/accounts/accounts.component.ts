@@ -13,7 +13,7 @@ import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
 import {findSchedule} from '../shared/ScheduleValues';
 
-export const initValue = {
+const initValue = {
   name: '',
   currentBalance: 0,
   statementBalance: 0,
@@ -70,7 +70,7 @@ export class AccountsComponent implements OnInit {
   populateHint() {
     this.accounts.forEach((account) => {
       account['hint'] = '' + account.accountType +
-        '\nSchedule: ' + findSchedule(account.scheduleId).name +
+        '\nSchedule: ' + findSchedule(account.scheduleId, this).name +
         '\nMonthly spend: ' + account.monthlySpend;
     });
   }

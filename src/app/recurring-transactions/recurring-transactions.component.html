@@ -9,8 +9,8 @@
         <mat-list>
           <mat-list-item *ngFor="let transaction of transactions">{{ transaction.name }}
             <mat-icon color="primary" [matTooltip]="transaction['hint'] || ''" class="small-icon">info</mat-icon>
-            <mat-icon color="primary" matTooltip="Edit account" class="small-icon pointer" (click)="editAccount(transaction.id)">edit</mat-icon>
-            <mat-icon color="primary" matTooltip="Delete account" class="small-icon pointer" (click)="deleteAccount(transaction.id)">delete</mat-icon>
+            <mat-icon color="primary" matTooltip="Edit recurring transaction" class="small-icon pointer" (click)="editTransaction(transaction.id)">edit</mat-icon>
+            <mat-icon color="primary" matTooltip="Delete recurring transaction" class="small-icon pointer" (click)="deleteTransaction(transaction.id)">delete</mat-icon>
           </mat-list-item>
         </mat-list>
       </mat-card-content>
@@ -32,14 +32,10 @@
               <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
             </mat-form-field>
           </p>
-          <p>
-            Account schedule:<br/>
-            <mat-select class="full-width"  formControlName="scheduleId">
-              <mat-option *ngFor="let schedule of schedules" [value]="schedule.id">
-                {{schedule.name}}
-              </mat-option>
-            </mat-select>
-          </p>
+          <mat-label class="mat-label">Transaction schedule:</mat-label>
+            <mat-checkbox *ngFor="let schedule of schedules" [formControlName]="'schedule_' + schedule.id" class="full-width">
+              {{schedule.name}}
+            </mat-checkbox>
           <p>
             <mat-form-field class="full-width">
               <input matInput formControlName="amount" placeholder="Amount" type="text" required>

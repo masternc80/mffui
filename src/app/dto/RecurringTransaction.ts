@@ -4,6 +4,6 @@ export class RecurringTransaction {
   id: number;
   name: string;
   amount: number;
-  scheduleIds: number[];
-  schedules: Schedule[];
+  scheduleIds: number[] = [];
+  schedules: Schedule[] = [];
 }

@@ -36,6 +36,8 @@ import { EditAccountComponent } from './edit-account/edit-account.component';
 import {NotificationComponent} from './shared/notification.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { EditRecurringTransactionComponent } from './edit-recurring-transaction/edit-recurring-transaction.component';
+import {MatTableModule} from '@angular/material';
 
 @NgModule({
   exports: [
@@ -52,6 +54,7 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AccountsComponent,
     EditAccountComponent,
     ConfirmDialogComponent,
+    EditRecurringTransactionComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MatSnackBarModule,
     NgbModule,
     RouterModule.forRoot(appRoutes),
-    MatCardModule
+    MatCardModule,
+    MatTableModule
   ],
   providers: [
     ScheduleService
@@ -87,6 +91,7 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     EditScheduleComponent,
     EditAccountComponent,
+    EditRecurringTransactionComponent,
     NotificationComponent,
     ConfirmDialogComponent],
   bootstrap: [AppComponent]

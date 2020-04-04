@@ -38,8 +38,8 @@ export function createScheduleForm(scheduleClass: any) {
     .subscribe(data => scheduleClass.onValueChanged(data));
 }
 
-export function findSchedule(id: number): Schedule {
-  for (const schedule of this.schedules) {
+export function findSchedule(id: number, scheduleClass: any): Schedule {
+  for (const schedule of scheduleClass.schedules) {
     if (schedule.id === id) {
       return schedule;
     }
